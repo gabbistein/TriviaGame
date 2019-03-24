@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Gabbi's Trivia Game</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Gabbi's Trivia Game</h1>
+            <p class="lead">Hint: This is a Skyrim-themed trivia game so get in touch with your inner Dragonborn!
+            </p>
+            <a class="btn btn-dark startButton" role="button" href="">Click to Start!</a>
+        </div>
+    </div>
+
+    <div class="container" id="gameScreen" style="display:none;">
+        <div class="row">
+
+            <div class="col-md-12 text-center" id="question"></div>
+
+            <div class="col-md-3 text-center" id="answerButtons">
+                <a class="btn btn-success question" role="button" href="index3.html"><span id="triviaAnswer"></span></a>
+            </div>
+
+            <div class="col-md-3 text-center" id="answerButtons">
+                <a class="btn btn-success question" role="button" href="index3.html"><span id="triviaAnswer"></span></a>
+            </div>
+
+            <div class="col-md-3 text-center" id="answerButtons">
+                <a class="btn btn-success question" role="button" href="index3.html"><span id="triviaAnswer"></span></a>
+            </div>
+
+            <div class="col-md-3 text-center" id="answerButtons">
+                <a class="btn btn-success question" role="button" href="index3.html"><span id="triviaAnswer"></span></a>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center" id="countdown"></div>
+        </div>
+    </div>
+
+
+    <div class="container" id="replyScreen" style="display:none;">
+        <div class="row">
+            <div class="col-md-12 text-center" id="pageReply">SAMPLE TEXT</div>
+        </div>
+    </div>
+
+
+    <div class="container" id="endScreen" style="display:none;">
+        <div class="row text-center">
+            <div class="col-md-6 text-center" id="correctAnswers">0</div>
+            <div class="col-md-6 text-center" id="incorrectAnswers">0</div>
+        </div>
+    </div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/d3js/5.7.0/d3.min.js"></script>
+    <script rel="javascript" src="assets/javascript/app.js"></script>
+
+</body>
+
+</html>

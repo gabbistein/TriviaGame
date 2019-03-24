@@ -1,0 +1,19 @@
+.jumbotron {
+    background: rgba(119, 136, 153, 0.685);
+    color:#343a40;
+}
+
+body {
+    background-color: rgba(255, 255, 255, 0.4) !important;
+    background-image: url("../images/skyrimscape.jpg");
+    background-blend-mode: soft-light;
+    color:#343a40;
+}
+
+.display-4{
+    font-size: 50pt;
+}
+
+.lead {
+    font-size: 16pt;
+}
