@@ -1,3 +1,53 @@
+$(document).ready(function () {
+
+    var gameInfo = [
+        questionOne = {
+            question: "What is the prize at the end of the quest 'Discerning the Transmundane'?",
+            answers: ["Oghma Infinium", "The Mace of Molag Bal", "Ebony Blade", "Mehrune's Razor"]
+        },
+        questionTwo = {
+            question: "That one town guard couldn't be an adventurer anymore because he took an arrow to his:",
+            answers: ["Knee", "Throat", "Eye", "Foot"]
+        },
+        questionThree = {
+            question: "",
+            answers: [""]
+        },
+        questionFour = {
+            question: "",
+            answers: [""]
+        },
+        questionFive = {
+            question: "What is the name of the lizard-like race in Skyrim?",
+            answers: ["Argonians", "Dunmer", "Redguards", "Bosmer"]
+        }
+    ]
+
+    var rightAnswers = 0;
+    var wrongAnswers = 0;
+
+    function startGame() {
+        $("#gameScreen").css("display", "none");
+        $("#replyScreen").css("display", "none");
+        $("#endScreen").css("display", "none");
+        rightAnswers = 0;
+        wrongAnswers = 0;
+    }
+
+    // This displays your question, answer choices, and timer when you click startButton.
+    $("#startButton").click(function () {
+        $("#gameScreen").css("display", "block");
+    })
+
+    // This is the question you need to answer.
+    $("#question").text(gameInfo[0].question)
+
+
+
+});
+
+
+
 
 // When you click on the start button, the gameScreen loads up. It populates a question and the timer counts down from 7 seconds.
 
@@ -13,39 +63,3 @@
 // The game keeps track of how many incorrect guesses (wrong answers + time outs) and correct guesses you have for one session.
 
 // On the endScreen, report total correctAnswers and incorrectAnswers.
-
-
-$(document).ready(function () {
-
-
-
-
-    var gameInfo = {
-        questionOne: {
-            question: "What is this?",
-            correctAnswer: "Me",
-            wrongAnswer =["Not me", "You"]
-        },
-        questionTwo: {
-            question: "",
-            correctAnswer: "",
-            wrongAnswer: []
-        },
-        questionThree: {
-            question: "",
-            correctAnswer: "",
-            wrongAnswer: []
-        },
-        questionFour: {
-            question: "",
-            correctAnswer: "",
-            wrongAnswer: []
-        },
-        questionFive: {
-            question: "",
-            correctAnswer: "",
-            wrongAnswer: []
-        }
-    }
-
-});
