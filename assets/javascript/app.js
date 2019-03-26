@@ -3,33 +3,59 @@ $(document).ready(function () {
     var gameInfo = [
         questionOne = {
             question: "What is the prize at the end of the quest 'Discerning the Transmundane'?",
-            answers: ["Oghma Infinium", "The Mace of Molag Bal", "Ebony Blade", "Mehrune's Razor"]
+            answers: [
+                { text: "Oghma Infinium", correct: true },
+                { text: "The Mace of Molag Bal", correct: false },
+                { text: "Ebony Blade", correct: false },
+                { text: "Mehrune's Razor", correct: false }
+            ]
         },
         questionTwo = {
             question: "That one town guard couldn't be an adventurer anymore because he took an arrow to his:",
-            answers: ["Knee", "Throat", "Eye", "Foot"]
+            answers: [
+                { text: "Knee", correct: true },
+                { text: "Throat", correct: false },
+                { text: "Eye", correct: false },
+                { text: "Foot", correct: false }
+            ]
         },
         questionThree = {
-            question: "",
-            answers: [""]
+            question: "Out of all the joinable factions in Skyrim, which rewards you with the Shrouded Armor set?",
+            answers: [
+                { text: "The Dark Brotherhood", correct: true },
+                { text: "The Thieves Guild", correct: false },
+                { text: "The Imperial Legion", correct: false },
+                { text: "The Companions", correct: false }
+            ]
         },
         questionFour = {
-            question: "",
-            answers: [""]
+            question: "Which of the choices below is not a school of magic in Skyrim?",
+            answers: [
+                { text: "Divination", correct: true },
+                { text: "Illusion", correct: false },
+                { text: "Conjuration", correct: false },
+                { text: "Restoration", correct: false },
+            ]
         },
         questionFive = {
             question: "What is the name of the lizard-like race in Skyrim?",
-            answers: ["Argonians", "Dunmer", "Redguards", "Bosmer"]
+            answers: [
+                { text: "Argonians", correct: true },
+                { text: "Dunmer", correct: false },
+                { text: "Redguards", correct: false },
+                { text: "Bosmer", correct: false }
+            ]
         }
     ]
 
     var rightAnswers = 0;
     var wrongAnswers = 0;
 
-    function startGame() {
+    function resetGame() {
         $("#gameScreen").css("display", "none");
         $("#replyScreen").css("display", "none");
         $("#endScreen").css("display", "none");
+        randomizer(gameInfo);
         rightAnswers = 0;
         wrongAnswers = 0;
     }
@@ -37,13 +63,40 @@ $(document).ready(function () {
     // This displays your question, answer choices, and timer when you click startButton.
     $("#startButton").click(function () {
         $("#gameScreen").css("display", "block");
-    })
+        shuffleQuestions();
+        playTrivia(gameInfo);
+        });
 
-    // This is the question you need to answer.
-    $("#question").text(gameInfo[0].question)
+    function randomizer(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+            [array[i], array[j]] = [array[j], array[i]]; // swap elements
+        }
+        return array;
+    }
 
+    function shuffleQuestions() {
+        randomizer(gameInfo);
+        console.log(gameInfo);
+        return;
+    }
 
+    function playTrivia(gameInformation) {
+        for (let i = 0; i < gameInformation.length; i++) {
+            loadInfo(gameInformation[i]);
+        }
+    }
 
+    function loadInfo(question) {
+        console.log(question);
+        console.log({ question });
+        $("#question").text(question.question);
+        $("#triviaAnswer1").text(question.answers[0].text);
+        $("#triviaAnswer2").text(question.answers[1].text);
+        $("#triviaAnswer3").text(question.answers[2].text);
+        $("#triviaAnswer4").text(question.answers[3].text);
+    }
+    
 });
 
 
