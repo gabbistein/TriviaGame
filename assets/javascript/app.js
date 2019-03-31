@@ -48,14 +48,23 @@ $(document).ready(function () {
         }
     ]
 
+    var indexArray = [0, 1, 2, 3]
+    var randomIndex = randomizer(indexArray);
+    console.log(randomIndex);
     var rightAnswers = 0;
     var wrongAnswers = 0;
+    var counter = 0;
+
+    function replyTimeUp() {
+        setTimeout(leaveReplyScreen, 1000);
+    }
+
 
     function resetGame() {
         $("#gameScreen").css("display", "none");
         $("#replyScreen").css("display", "none");
         $("#endScreen").css("display", "none");
-        randomizer(gameInfo);
+        shuffleQuestions();
         rightAnswers = 0;
         wrongAnswers = 0;
     }
@@ -65,42 +74,59 @@ $(document).ready(function () {
         $("#gameScreen").css("display", "block");
         shuffleQuestions();
         playTrivia(gameInfo);
-        });
 
+    });
+
+    // This displays the next page after clicking the gameplay buttons.
+    $(".question").click(function () {
+        $("#replyScreen").css("display", "block");
+        $("#gameScreen").css("display", "none");
+        replyTimeUp();
+    })
+
+    function leaveReplyScreen() {
+        $("#gameScreen").css("display", "block");
+        $("#replyScreen").css("display", "none");
+        counter++;
+        playTrivia(gameInfo);
+
+    }
+
+    // This function shuffles elements in an array which, in this case, changes up the order of the questions in case the player wants to take the quiz again.
     function randomizer(array) {
         for (let i = array.length - 1; i > 0; i--) {
-            let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
-            [array[i], array[j]] = [array[j], array[i]]; // swap elements
+            let j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
         }
         return array;
     }
 
+    // This function uses the array randomizer to pick a question from the gameInfo array and return it.
     function shuffleQuestions() {
         randomizer(gameInfo);
-        console.log(gameInfo);
+        console.log({ gameInfo });
         return;
     }
 
     function playTrivia(gameInformation) {
-        for (let i = 0; i < gameInformation.length; i++) {
-            loadInfo(gameInformation[i]);
-        }
+        loadInfo(gameInformation[counter]);
+        console.log("runthrough")
     }
 
-    function loadInfo(question) {
-        console.log(question);
-        console.log({ question });
-        $("#question").text(question.question);
-        $("#triviaAnswer1").text(question.answers[0].text);
-        $("#triviaAnswer2").text(question.answers[1].text);
-        $("#triviaAnswer3").text(question.answers[2].text);
-        $("#triviaAnswer4").text(question.answers[3].text);
+
+    // This function specifies what to write into the divs.
+    function loadInfo(q) {
+        $("#question").text(q.question);
+        $("#triviaAnswer1").text(q.answers[randomIndex[0]].text);
+        $("#triviaAnswer2").text(q.answers[randomIndex[1]].text);
+        $("#triviaAnswer3").text(q.answers[randomIndex[2]].text);
+        $("#triviaAnswer4").text(q.answers[randomIndex[3]].text);
     }
-    
+
 });
 
 
-
+// PSUEDOCODE BELOW:
 
 // When you click on the start button, the gameScreen loads up. It populates a question and the timer counts down from 7 seconds.
 
@@ -116,3 +142,11 @@ $(document).ready(function () {
 // The game keeps track of how many incorrect guesses (wrong answers + time outs) and correct guesses you have for one session.
 
 // On the endScreen, report total correctAnswers and incorrectAnswers.
+
+
+
+// Per Ken's Help:
+
+// Clicking the button to move on to next screen.
+
+// When you click the button you up your win or losses, then move on to the next question (no shuffling required) display the reply screen & put the timer back to zero.

@@ -1,10 +1,10 @@
 .jumbotron {
-    background: rgba(119, 136, 153, 0.7);
+    background: rgba(119, 136, 153, 0.6);
     color:#272b30;
 }
 
 body {
-    background-color: rgba(255, 255, 255, 0.4) !important;
+    background-color: rgba(255, 255, 255, 0.35) !important;
     background-image: url("../images/skyrimscape.jpg");
     background-blend-mode: soft-light;
     background-position: top center;
@@ -32,7 +32,7 @@ body {
     color:#272b30;
     padding:2rem;
     font-size: 16pt;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 #question {
