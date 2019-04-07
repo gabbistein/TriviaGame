@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Gabbi's Trivia Game</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 
 </head>
@@ -28,19 +29,19 @@
             <div class="col-md-12 text-center" id="question"></div>
 
             <div class="col-md-3 text-center" id="answerButton1">
-                <a class="btn btn-dark question" role="button"><span id="triviaAnswer1"></span></a>
+                <a class="btn btn-dark question" role="button" id="triviaAnswer1"></a>
             </div>
 
             <div class="col-md-3 text-center" id="answerButton2">
-                <a class="btn btn-dark question" role="button"><span id="triviaAnswer2"></span></a>
+                <a class="btn btn-dark question" role="button" id="triviaAnswer2"></a>
             </div>
 
             <div class="col-md-3 text-center" id="answerButton3">
-                <a class="btn btn-dark question" role="button"><span id="triviaAnswer3"></span></a>
+                <a class="btn btn-dark question" role="button" id="triviaAnswer3"></a>
             </div>
 
             <div class="col-md-3 text-center" id="answerButton4">
-                <a class="btn btn-dark question" role="button"><span id="triviaAnswer4"></span></a>
+                <a class="btn btn-dark question" role="button" id="triviaAnswer4"></a>
             </div>
 
         </div>
@@ -50,17 +51,24 @@
     </div>
 
 
-    <div class="container" id="replyScreen" style="display:none;">
-        <div class="row">
-            <div class="col-md-12 text-center" id="pageReply">SAMPLE TEXT</div>
+    <div class="container text-center" id="replyScreen" style="display:none;">
+        <div class="row text-center">
+            <div class="col-md-12" id="rightOrNah"></div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12" id="correctAnswers"></div>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-12" id="incorrectAnswers"></div>
         </div>
     </div>
 
 
     <div class="container" id="endScreen" style="display:none;">
         <div class="row text-center">
-            <div class="col-md-6 text-center" id="correctAnswers">0</div>
-            <div class="col-md-6 text-center" id="incorrectAnswers">0</div>
+            <div class="col-md-12" id="endMessage"></div>
+            <div class="col-md-12" id="correctAnswersEnd"></div>
+            <div class="col-md-12" id="incorrectAnswersEnd"></div>
         </div>
     </div>
 

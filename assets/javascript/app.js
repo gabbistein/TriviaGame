@@ -49,14 +49,31 @@ $(document).ready(function () {
     ]
 
     var indexArray = [0, 1, 2, 3]
-    var randomIndex = randomizer(indexArray);
+    var randomIndex = [];
     console.log(randomIndex);
     var rightAnswers = 0;
     var wrongAnswers = 0;
     var counter = 0;
+    var timer;
+    var timerTwo;
+    var timerThree;
+
+    function stopTimer() {
+        clearTimeout(timer);
+        clearTimeout(timerTwo);
+        clearTimeout(timerThree);
+    }
 
     function replyTimeUp() {
-        setTimeout(leaveReplyScreen, 1000);
+        timer = setTimeout(leaveReplyScreen, 2000);
+    }
+
+    function endTimeUp() {
+        timerTwo = setTimeout(endGame, 3000);
+    }
+
+    function gameTimeUp() {
+        timerThree = setTimeout(timeOut, 6000);
     }
 
 
@@ -65,16 +82,25 @@ $(document).ready(function () {
         $("#replyScreen").css("display", "none");
         $("#endScreen").css("display", "none");
         shuffleQuestions();
+        playTrivia(gameInfo);
         rightAnswers = 0;
         wrongAnswers = 0;
+        counter = 0;
     }
 
     // This displays your question, answer choices, and timer when you click startButton.
     $("#startButton").click(function () {
-        $("#gameScreen").css("display", "block");
+        rightAnswers = 0;
+        wrongAnswers = 0;
+        counter = 0;
+        console.log(counter);
+        randomIndex = [];
         shuffleQuestions();
+        gameTimeUp();
+        $("#endScreen").css("display", "none");
+        $("#replyScreen").css("display", "none");
+        $("#gameScreen").css("display", "block");
         playTrivia(gameInfo);
-
     });
 
     // This displays the next page after clicking the gameplay buttons.
@@ -82,14 +108,50 @@ $(document).ready(function () {
         $("#replyScreen").css("display", "block");
         $("#gameScreen").css("display", "none");
         replyTimeUp();
+        if (($(this).attr("isCorrect")) == "true") {
+            rightAnswers++;
+            $("#rightOrNah").text("You're right!")
+        } else {
+            wrongAnswers++;
+            $("#rightOrNah").text("You're wrong!")
+        }
+        $("#correctAnswers").text("The correct answer is: " + gameInfo[counter].answers[0].text);
+        $("#incorrectAnswers").text("You have answered " + rightAnswers + " questions correctly and " + wrongAnswers + " questions incorrectly.");
+        console.log(counter);
     })
+
+    function timeOut() {
+        $("#replyScreen").css("display", "block");
+        $("#gameScreen").css("display", "none");
+        wrongAnswers++;
+        replyTimeUp();
+        $("#rightOrNah").text("Time's up!")
+        $("#correctAnswers").text("The correct answer is: " + gameInfo[counter].answers[0].text);
+        $("#incorrectAnswers").text("You have answered " + rightAnswers + " questions correctly and " + wrongAnswers + " questions incorrectly.");
+    }
 
     function leaveReplyScreen() {
         $("#gameScreen").css("display", "block");
         $("#replyScreen").css("display", "none");
         counter++;
-        playTrivia(gameInfo);
+        if (counter > 4) {
+            endGame();
+        } else if (counter <= 4) {
+            gameTimeUp();
+            playTrivia(gameInfo);
+        }
+    }
 
+    // The end of the game.
+    function endGame() {
+        $("#gameScreen").css("display", "none");
+        $("#replyScreen").css("display", "none");
+        $("#endScreen").css("display", "block");
+        endTimeUp();
+        $("#endMessage").text("Thanks for taking my Skyrim quiz, click the Start button to play again!");
+        $("#correctAnswersEnd").text("You got " + rightAnswers + " questions right!");
+        $("#incorrectAnswersEnd").text("You got " + wrongAnswers + " questions wrong!");
+        stopTimer();
     }
 
     // This function shuffles elements in an array which, in this case, changes up the order of the questions in case the player wants to take the quiz again.
@@ -109,18 +171,29 @@ $(document).ready(function () {
     }
 
     function playTrivia(gameInformation) {
+        for (let i = 0; i < indexArray.length; i++) {
+            randomIndex = randomizer(indexArray);
+        }
         loadInfo(gameInformation[counter]);
-        console.log("runthrough")
+        console.log("runthrough");
     }
 
 
     // This function specifies what to write into the divs.
     function loadInfo(q) {
         $("#question").text(q.question);
-        $("#triviaAnswer1").text(q.answers[randomIndex[0]].text);
-        $("#triviaAnswer2").text(q.answers[randomIndex[1]].text);
-        $("#triviaAnswer3").text(q.answers[randomIndex[2]].text);
-        $("#triviaAnswer4").text(q.answers[randomIndex[3]].text);
+        $("#triviaAnswer1")
+            .text(q.answers[randomIndex[0]].text)
+            .attr("isCorrect", q.answers[randomIndex[0]].correct);
+        $("#triviaAnswer2")
+            .text(q.answers[randomIndex[1]].text)
+            .attr("isCorrect", q.answers[randomIndex[1]].correct);
+        $("#triviaAnswer3")
+            .text(q.answers[randomIndex[2]].text)
+            .attr("isCorrect", q.answers[randomIndex[2]].correct);
+        $("#triviaAnswer4")
+            .text(q.answers[randomIndex[3]].text)
+            .attr("isCorrect", q.answers[randomIndex[3]].correct);
     }
 
 });
