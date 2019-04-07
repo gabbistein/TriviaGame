@@ -1,5 +1,5 @@
 .jumbotron {
-    background: rgba(119, 136, 153, 0.6);
+    background-color: rgba(255, 255, 255, 0.38);
     color:#272b30;
 }
 
@@ -21,6 +21,11 @@ body {
 
 .lead {
     font-size: 16pt;
+    margin: 0rem;
+}
+
+#instructions {
+    margin-bottom: 1rem;
 }
 
 .btn-dark {
@@ -28,7 +33,7 @@ body {
 }
 
 #gameScreen, #replyScreen, #endScreen {
-    background: rgba(119, 136, 153, 0.7);
+    background-color: rgba(255, 255, 255, 0.664);
     color:#272b30;
     padding:2rem;
     font-size: 16pt;
@@ -40,11 +45,11 @@ body {
 }
 
 #replyScreen {
-    background: rgba(119, 136, 153, 0.685);
+    background-color: rgba(255, 255, 255, 0.664);
     color:#272b30;
 }
 
 #endScreen {
-    background: rgba(119, 136, 153, 0.685);
+    background-color: rgba(255, 255, 255, 0.664);
     color:#272b30;
 }

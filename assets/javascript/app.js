@@ -65,7 +65,7 @@ $(document).ready(function () {
     }
 
     function replyTimeUp() {
-        timer = setTimeout(leaveReplyScreen, 2000);
+        timer = setTimeout(leaveReplyScreen, 2800);
     }
 
     function endTimeUp() {
@@ -73,19 +73,7 @@ $(document).ready(function () {
     }
 
     function gameTimeUp() {
-        timerThree = setTimeout(timeOut, 6000);
-    }
-
-
-    function resetGame() {
-        $("#gameScreen").css("display", "none");
-        $("#replyScreen").css("display", "none");
-        $("#endScreen").css("display", "none");
-        shuffleQuestions();
-        playTrivia(gameInfo);
-        rightAnswers = 0;
-        wrongAnswers = 0;
-        counter = 0;
+        timerThree = setTimeout(timeOut, 7000);
     }
 
     // This displays your question, answer choices, and timer when you click startButton.
@@ -95,8 +83,8 @@ $(document).ready(function () {
         counter = 0;
         console.log(counter);
         randomIndex = [];
-        shuffleQuestions();
         gameTimeUp();
+        shuffleQuestions();
         $("#endScreen").css("display", "none");
         $("#replyScreen").css("display", "none");
         $("#gameScreen").css("display", "block");
@@ -107,6 +95,7 @@ $(document).ready(function () {
     $(".question").click(function () {
         $("#replyScreen").css("display", "block");
         $("#gameScreen").css("display", "none");
+        clearTimeout(timerThree);
         replyTimeUp();
         if (($(this).attr("isCorrect")) == "true") {
             rightAnswers++;
@@ -128,6 +117,7 @@ $(document).ready(function () {
         $("#rightOrNah").text("Time's up!")
         $("#correctAnswers").text("The correct answer is: " + gameInfo[counter].answers[0].text);
         $("#incorrectAnswers").text("You have answered " + rightAnswers + " questions correctly and " + wrongAnswers + " questions incorrectly.");
+        clearTimeout(timerThree);
     }
 
     function leaveReplyScreen() {
@@ -137,8 +127,8 @@ $(document).ready(function () {
         if (counter > 4) {
             endGame();
         } else if (counter <= 4) {
-            gameTimeUp();
             playTrivia(gameInfo);
+            gameTimeUp();
         }
     }
 
